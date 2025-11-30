@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education - Chanul Wijesinghe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e293b 0%, #581c87 50%, #1e293b 100%);
+            color: white;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(192, 132, 252, 0.3);
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Ensure content is above background */
+        nav, .main-content, footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #c084fc, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #c084fc;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .main-content {
+            padding: 8rem 2rem 4rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(to right, #c084fc, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .education-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+
+        .education-item:hover {
+            border-color: rgba(192, 132, 252, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .education-header {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .icon {
+            color: #c084fc;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        .education-details h2 {
+            font-size: 1.5rem;
+            color: #c084fc;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-details p {
+            color: #d1d5db;
+            margin-bottom: 0.3rem;
+        }
+
+        .education-details .partner {
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .period {
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .results {
+            color: #c084fc;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .modules-section {
+            margin-top: 1.5rem;
+        }
+
+        .modules-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #c084fc;
+            margin-bottom: 1rem;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .module-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .module-name {
+            color: #d1d5db;
+        }
+
+        .module-grade {
+            color: #c084fc;
+            font-weight: 600;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(192, 132, 252, 0.2);
+            border: 1px solid rgba(192, 132, 252, 0.3);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #d1d5db;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #9ca3af;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu a {
+                padding: 1rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .education-item {
+                padding: 1.5rem;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg" id="animatedBg"></div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="main.html" class="logo">Chanul Wijesinghe</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="main.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="education.html" class="active">Education</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <h1>Education</h1>
+
+        <!-- BSc Computer Science -->
+        <div class="education-item">
+            <div class="education-header">
+                <svg class="icon" width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+                </svg>
+                <div class="education-details">
+                    <h2>BSc (Hons) Computer Science (Undergraduate)</h2>
+                    <p>Informatics Institute of Technology, Sri Lanka</p>
+                    <p class="partner">In partnership with University of Westminster, UK</p>
+                    <p class="period">2024 - Present</p>
+                </div>
+            </div>
+
+            <div class="modules-section">
+                <p class="modules-title">1st Year Modules:</p>
+                <div class="modules-grid">
+                    <div class="module-item">
+                        <span class="module-name">Mathematics for Computing</span>
+                        <span class="module-grade">93%</span>
+                    </div>
+                    <div class="module-item">
+                        <span class="module-name">Computer System Fundamentals</span>
+                        <span class="module-grade">93%</span>
+                    </div>
+                    <div class="module-item">
+                        <span class="module-name">Web Design and Development</span>
+                        <span class="module-grade">80%</span>
+                    </div>
+                    <div class="module-item">
+                        <span class="module-name">Software Development 2</span>
+                        <span class="module-grade">78%</span>
+                    </div>
+                    <div class="module-item">
+                        <span class="module-name">Software Development 1</span>
+                        <span class="module-grade">75%</span>
+                    </div>
+                    <div class="module-item">
+                        <span class="module-name">Trends in Computer Science</span>
+                        <span class="module-grade">75%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modules-section">
+                <p class="modules-title">2nd Year Modules:</p>
+                <div class="tags-container">
+                    <span class="tag">Object Oriented Programming</span>
+                    <span class="tag">Database Systems</span>
+                    <span class="tag">Software Development Group Project</span>
+                    <span class="tag">Client-Server Architectures</span>
+                    <span class="tag">Algorithms: Theory, design and implementation</span>
+                    <span class="tag">Information Technology Security</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- A/L -->
+        <div class="education-item">
+            <div class="education-header">
+                <svg class="icon" width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+                </svg>
+                <div class="education-details">
+                    <h2>G.C.E. Advanced Level (A/L) - Science Stream</h2>
+                    <p>Ananda College, Colombo 10</p>
+                    <p class="period">2020 - 2022</p>
+                    <p style="color: #9ca3af; font-size: 0.9rem;">Subjects: Biology, Physics, Chemistry</p>
+                    <p class="results">Results: 3C Grades</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- O/L -->
+        <div class="education-item">
+            <div class="education-header">
+                <svg class="icon" width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+                </svg>
+                <div class="education-details">
+                    <h2>G.C.E. Ordinary Level (O/L)</h2>
+                    <p>Ananda College, Colombo 10</p>
+                    <p class="period">2009 - 2020</p>
+                    <p class="results">Results: 9A Grades</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Chanul Wijesinghe. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Animated Background
+        function createParticles() {
+            const bg = document.getElementById('animatedBg');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 5 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                
+                bg.appendChild(particle);
+            }
+        }
+        
+        createParticles();
+
+        // Mobile menu toggle
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-container')) {
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

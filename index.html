@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Chanul Wijesinghe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e293b 0%, #581c87 50%, #1e293b 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .splash-container {
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .splash-logo {
+            font-size: 5rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #c084fc, #f472b6, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+            margin-bottom: 1rem;
+        }
+
+        .splash-subtitle {
+            font-size: 1.5rem;
+            color: #d1d5db;
+            margin-bottom: 3rem;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        .loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(192, 132, 252, 0.2);
+            border-top: 4px solid #c084fc;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-text {
+            color: #c084fc;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+
+        .fade-out {
+            animation: fadeOut 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .splash-logo {
+                font-size: 3rem;
+            }
+
+            .splash-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="splash-container">
+        <div class="splash-logo">Chanul Wijesinghe</div>
+        <p class="splash-subtitle">Computer Science Undergraduate</p>
+        
+        <div class="loader-container">
+            <div class="loader"></div>
+            <p class="loading-text">LOADING</p>
+        </div>
+    </div>
+
+    <script>
+        // Automatically redirect to main.html after 2.5 seconds
+        setTimeout(function() {
+            document.querySelector('.splash-container').classList.add('fade-out');
+            setTimeout(function() {
+                window.location.href = 'main.html';
+            }, 500);
+        }, 2500);
+    </script>
+</body>
+</html>
